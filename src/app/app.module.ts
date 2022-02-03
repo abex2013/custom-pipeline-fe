@@ -20,6 +20,10 @@ import { DemoNgZorroAntdModule } from './ng-zorro-antd.module';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { LoginModule } from './components/login/login.module';
 import { RegistrationModule } from './components/registration/registration.module';
+import { AuthService } from './core/services/auth.service';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { DashboardModule } from './components/dashboard/dashboard.module';
+import { AuthRoutingGaurd } from './core/guards/auth.routing.guard';
 
 
 
@@ -28,6 +32,7 @@ registerLocaleData(en);
 @NgModule({
   declarations: [
     AppComponent,
+    // DashboardComponent,
     // RegistrationComponent,
     // LoginComponent,
     // HomeComponent,
@@ -42,6 +47,7 @@ registerLocaleData(en);
     HomeModule,
     LoginModule,
     RegistrationModule,
+    DashboardModule,
     ReactiveFormsModule,
     NzLayoutModule,
     NzMenuModule,
@@ -49,7 +55,7 @@ registerLocaleData(en);
     DemoNgZorroAntdModule
 
   ],
-  providers: [{ provide: NZ_I18N, useValue: en_US }],
+  providers: [{ provide: NZ_I18N, useValue: en_US }, AuthService, AuthRoutingGaurd],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

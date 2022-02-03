@@ -1,5 +1,8 @@
+import { asLiteral } from '@angular/compiler/src/render3/view/util';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/core/services/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -7,6 +10,16 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
+  loginData={
+    userName:'',
+    password:''
+  };
+  userLogin(){
+
+    this.authService.userLogin(this.loginData);
+    alert("user logged in successfully");
+    this.route.navigate(['/dashboard'])
+  }
   validateForm!: FormGroup;
 
   submitForm(): void {
@@ -22,7 +35,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private authService:AuthService, private route:Router) {}
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({

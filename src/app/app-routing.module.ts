@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthRoutingGaurd } from './core/guards/auth.routing.guard';
 
 const routes: Routes = [{
   path:'',
@@ -11,7 +12,13 @@ const routes: Routes = [{
 },
 {
   path:'registration',
-  loadChildren: () => import('./components/registration/registration.module').then(_ => _.RegistrationModule)
+  loadChildren: () => import('./components/registration/registration.module').then(_ => _.RegistrationModule),
+  canActivate: [AuthRoutingGaurd]
+},
+{
+  path:'dashboard',
+  loadChildren: () => import('./components/dashboard/dashboard.module').then(_ => _.DashboardModule),
+  canActivate: [AuthRoutingGaurd]
 },
 ];
 
