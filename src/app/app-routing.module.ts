@@ -20,6 +20,16 @@ const routes: Routes = [{
   loadChildren: () => import('./components/dashboard/dashboard.module').then(_ => _.DashboardModule),
   canActivate: [AuthRoutingGaurd]
 },
+{
+  path:'source-data',
+  loadChildren: () => import('./components/source-data/source-data.module').then(_ => _.SourceDataModule),
+  canActivate: [AuthRoutingGaurd]
+},
+{
+  path:'destination-data',
+  loadChildren: () => import('./components/destination-data/destination-data.module').then(_ => _.DestinationDataModule),
+  canActivate: [AuthRoutingGaurd]
+},
 ];
 
 @NgModule({
