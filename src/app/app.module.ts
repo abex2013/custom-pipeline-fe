@@ -24,6 +24,10 @@ import { AuthService } from './core/services/auth.service';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { DashboardModule } from './components/dashboard/dashboard.module';
 import { AuthRoutingGaurd } from './core/guards/auth.routing.guard';
+import { SourceDataComponent } from './components/source-data/source-data.component';
+import { DestinationDataComponent } from './components/destination-data/destination-data.component';
+import { SourceDataModule } from './components/source-data/source-data.module';
+import { DestinationDataModule } from './components/destination-data/destination-data.module';
 
 
 
@@ -32,6 +36,8 @@ registerLocaleData(en);
 @NgModule({
   declarations: [
     AppComponent,
+    // SourceDataComponent,
+    // DestinationDataComponent,
     // DashboardComponent,
     // RegistrationComponent,
     // LoginComponent,
@@ -48,11 +54,14 @@ registerLocaleData(en);
     LoginModule,
     RegistrationModule,
     DashboardModule,
+    SourceDataModule,
+    DestinationDataModule,
     ReactiveFormsModule,
     NzLayoutModule,
     NzMenuModule,
     NzBreadCrumbModule,
-    DemoNgZorroAntdModule
+    DemoNgZorroAntdModule,
+    HttpClientModule
 
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }, AuthService, AuthRoutingGaurd],

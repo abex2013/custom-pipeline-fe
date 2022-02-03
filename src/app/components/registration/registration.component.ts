@@ -11,10 +11,10 @@ import { NzFormTooltipIcon } from 'ng-zorro-antd/form';
 export class RegistrationComponent implements OnInit {
 
   validateForm!: FormGroup;
-  captchaTooltipIcon: NzFormTooltipIcon = {
-    type: 'info-circle',
-    theme: 'twotone'
-  };
+  // captchaTooltipIcon: NzFormTooltipIcon = {
+  //   type: 'info-circle',
+  //   theme: 'twotone'
+  // };
 
   submitForm(): void {
     if (this.validateForm.valid) {
@@ -51,15 +51,16 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
+      name: [null, [Validators.required]],
       email: [null, [Validators.email, Validators.required]],
       password: [null, [Validators.required]],
       checkPassword: [null, [Validators.required, this.confirmationValidator]],
-      nickname: [null, [Validators.required]],
-      phoneNumberPrefix: ['+86'],
-      phoneNumber: [null, [Validators.required]],
-      website: [null, [Validators.required]],
-      captcha: [null, [Validators.required]],
-      agree: [false]
+      // nickname: [null, [Validators.required]],
+      // phoneNumberPrefix: ['+86'],
+      // phoneNumber: [null, [Validators.required]],
+      // website: [null, [Validators.required]],
+      // captcha: [null, [Validators.required]],
+      // agree: [false]
     });
   }
 
