@@ -1,20 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DashboardRoutingModule } from './dashboard-routing.module';
-import { DashboardComponent } from './dashboard.component';
+import { SourceDataRoutingModule } from './source-data-routing.module';
 import { DemoNgZorroAntdModule } from 'src/app/ng-zorro-antd.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SourceDataComponent } from './source-data.component';
 
 
 
 @NgModule({
-  declarations: [DashboardComponent],
+  declarations: [SourceDataComponent],
   imports: [
     CommonModule,
-    DashboardRoutingModule,
+    SourceDataRoutingModule,
     ReactiveFormsModule,
     DemoNgZorroAntdModule
-  ],
-  exports:[DashboardComponent]
+  ]
 })
-export class DashboardModule { }
+export class SourceDataModule { }
