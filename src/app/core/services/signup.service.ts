@@ -16,9 +16,7 @@ export class SignupService {
   userSignupUrl = 'https://kafka-producer.herokuapp.com/api/v1/users/signup';
   userSignupInfo: BehaviorSubject<any> = new BehaviorSubject(null);
   jwtHelper = new JwtHelperService();
-  // httpOptions = {
-  //   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  // };
+  
   constructor(protected _httpClient: HttpClient) { }
 
 
