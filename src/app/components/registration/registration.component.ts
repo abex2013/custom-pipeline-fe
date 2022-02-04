@@ -1,14 +1,29 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { NzFormTooltipIcon } from 'ng-zorro-antd/form';
+import { SignupService } from 'src/app/core/services/signup.service';
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.scss']
+  styleUrls: ['./registration.component.scss'],
 })
 export class RegistrationComponent implements OnInit {
+
+  registerData = {
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+  };
 
   validateForm!: FormGroup;
   // captchaTooltipIcon: NzFormTooltipIcon = {
@@ -20,7 +35,7 @@ export class RegistrationComponent implements OnInit {
     if (this.validateForm.valid) {
       console.log('submit', this.validateForm.value);
     } else {
-      Object.values(this.validateForm.controls).forEach(control => {
+      Object.values(this.validateForm.controls).forEach((control) => {
         if (control.invalid) {
           control.markAsDirty();
           control.updateValueAndValidity({ onlySelf: true });
@@ -31,7 +46,9 @@ export class RegistrationComponent implements OnInit {
 
   updateConfirmValidator(): void {
     /** wait for refresh value */
-    Promise.resolve().then(() => this.validateForm.controls.checkPassword.updateValueAndValidity());
+    Promise.resolve().then(() =>
+      this.validateForm.controls.confirmPassword.updateValueAndValidity()
+    );
   }
 
   confirmationValidator = (control: FormControl): { [s: string]: boolean } => {
@@ -47,21 +64,44 @@ export class RegistrationComponent implements OnInit {
     e.preventDefault();
   }
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private signupService: SignupService,
+    private route: Router,
+    private http: HttpClient
+  ) {}
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
       name: [null, [Validators.required]],
       email: [null, [Validators.email, Validators.required]],
       password: [null, [Validators.required]],
-      checkPassword: [null, [Validators.required, this.confirmationValidator]],
-      // nickname: [null, [Validators.required]],
-      // phoneNumberPrefix: ['+86'],
-      // phoneNumber: [null, [Validators.required]],
-      // website: [null, [Validators.required]],
-      // captcha: [null, [Validators.required]],
-      // agree: [false]
+      confirmPassword: [null, [Validators.required, this.confirmationValidator]],
     });
   }
+  registerUser() {
+    //   this.signupService.register(this.registerData).subscribe((res) => {
+    //     console.log(res.result);
+    //     if (res.result) {
+    //       //this.validateForm.reset()
 
+    //       this.route.navigate(['login']);
+    //     }
+    //   })
+    // }
+    this.signupService.register(this.registerData).subscribe(
+      (value: boolean) => {
+        if (value) {
+          this.route.navigate(['/login']);
+        } else {
+          alert('failed');
+        }
+      },
+      (error) => {
+        alert('faild');
+      }
+    );
+    alert('user logged in successfully');
+    this.route.navigate(['/login']);
+  }
 }
