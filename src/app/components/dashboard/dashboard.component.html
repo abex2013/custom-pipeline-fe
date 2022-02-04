@@ -1,14 +1,15 @@
-<div>
+<!-- <div>
   <h4> Welcome to your dashboard</h4>
   <ul>
     <li>username- {{user.username}}</li>
     <li>userId- {{user.id}}</li>
+    <li>token- {{access_token}}</li>
   </ul>
-</div>
+</div> -->
 
 <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
   <h1> Source Data: Azure Credentials</h1>
-  <nz-form-item>
+  <!-- <nz-form-item>
     <nz-form-label
       [nzSm]="6"
       [nzXs]="24"
@@ -20,7 +21,7 @@
     <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your name!">
       <input nz-input id="userId" formControlName="userId" />
     </nz-form-control>
-  </nz-form-item>
+  </nz-form-item> -->
   <nz-form-item>
     <nz-form-label
       [nzSm]="6"
@@ -31,7 +32,7 @@
       <span>Storage Account</span>
     </nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your name!">
-      <input nz-input id="storageAccount" formControlName="storageAccount" />
+      <input nz-input id="storageAccount" formControlName="storageAccount" [(ngModel)]="connectionData.storageAccount"/>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
@@ -44,7 +45,7 @@
       <span>Container Name</span>
     </nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your name!">
-      <input nz-input id="containerName" formControlName="containerName" />
+      <input nz-input id="containerName" formControlName="containerName" [(ngModel)]="connectionData.containerName"/>
     </nz-form-control>
   </nz-form-item>
 
@@ -58,14 +59,111 @@
       <span>Access Key</span>
     </nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your name!">
-      <input nz-input id="accessKey" formControlName="accessKey" />
+      <input nz-input id="accessKey" formControlName="accessKey" [(ngModel)]="connectionData.accessKey"/>
     </nz-form-control>
   </nz-form-item>
   <h1>Destination Data: Snowflake Credentials</h1>
-  
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="accountidentifier" nzRequired>
+      <span>Account Identifier</span>
+    </nz-form-label>
+    <nz-form-control
+      [nzSm]="14"
+      [nzXs]="24"
+      nzErrorTip="Please input your name!"
+    >
+      <input
+        nz-input
+        id="accountidentifier"
+        formControlName="accountidentifier"
+        [(ngModel)]="connectionData.accountidentifier"
+      />
+    </nz-form-control>
+  </nz-form-item>
+    <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="user" nzRequired>
+      <span>User</span>
+    </nz-form-label>
+    <nz-form-control
+      [nzSm]="14"
+      [nzXs]="24"
+      nzErrorTip="Please input your name!"
+    >
+      <input
+        nz-input
+        id="user"
+        formControlName="user"
+        [(ngModel)]="connectionData.user"
+      />
+    </nz-form-control>
+  </nz-form-item>
+  <!-- <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired>
+      <span>Password</span>
+    </nz-form-label>
+    <nz-form-control
+      [nzSm]="14"
+      [nzXs]="24"
+      nzErrorTip="Please input your name!"
+    >
+      <input nz-input id="password" formControlName="password" />
+    </nz-form-control>
+  </nz-form-item> -->
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired>Password</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your password!">
+      <input
+        nz-input
+        type="password"
+        id="password"
+        formControlName="password"
+
+        [(ngModel)]="connectionData.password"
+      />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="database_name" nzRequired>
+      <span>Database Name</span>
+    </nz-form-label>
+    <nz-form-control
+      [nzSm]="14"
+      [nzXs]="24"
+      nzErrorTip="Please input your name!"
+    >
+      <input nz-input id="database_name" formControlName="database_name" [(ngModel)]="connectionData.database_name" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="schema_name" nzRequired>
+      <span>Schema Name</span>
+    </nz-form-label>
+    <nz-form-control
+      [nzSm]="14"
+      [nzXs]="24"
+      nzErrorTip="Please input your name!"
+    >
+      <input nz-input id="schema_name" formControlName="schema_name" [(ngModel)]="connectionData.schema_name"/>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="warehouse_name" nzRequired>
+      <span>Warehouse Name</span>
+    </nz-form-label>
+    <nz-form-control
+      [nzSm]="14"
+      [nzXs]="24"
+      nzErrorTip="Please input your name!"
+    >
+      <input nz-input id="warehouse_name" formControlName="warehouse_name" [(ngModel)]="connectionData.warehouse_name"/>
+    </nz-form-control>
+  </nz-form-item>
+
   <nz-form-item nz-row class="register-area">
     <nz-form-control [nzSpan]="14" [nzOffset]="6">
-      <button nz-button nzType="primary">Register</button>
+      <button nz-button nzType="primary" (click)="registerConnection()">Register</button>
     </nz-form-control>
   </nz-form-item>
 </form>
