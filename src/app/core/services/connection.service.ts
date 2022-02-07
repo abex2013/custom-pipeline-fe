@@ -8,23 +8,12 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 
-// const httpOptions = {
-//   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-// };
-
 @Injectable({
   providedIn: 'root',
 })
 export class ConnectionService {
   userConnectionUrl = 'https://kafka-producer.herokuapp.com/api/v1/pipeline/';
    access_token: any;
-  // httpOptions = {
-  //   headers: new HttpHeaders({
-  //     'Content-Type': 'application/json',
-  //     'Authorization': this.access_token
-  //   }),
-  // };
-
 
   constructor(
     protected _httpClient: HttpClient,
@@ -49,7 +38,6 @@ export class ConnectionService {
     return this._httpClient
       .post(this.userConnectionUrl, userPayload, httpOptions)
       .pipe(catchError(this.handleError));
-    //return this._httpClient.post(this.userConnectionUrl,userPayload);
   }
   handleError(error: HttpErrorResponse) {
     let msg = '';
