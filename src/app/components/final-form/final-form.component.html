@@ -27,9 +27,9 @@
       </nz-card>
     </div>
 
-    <div nz-col [nzSpan]="2.25" class="card" >
+    <div nz-col [nzSpan]="2.75" class="card" >
       <nz-card nzTitle="Summary"  [style.background]="isTableCreated ? '#f1f1f1':'#ffffff'">
-        <nz-spin *ngIf="isTableCreated" nzTip="Creating...">
+        <nz-spin *ngIf="isTableCreated" nzTip="loading...">
         </nz-spin>
         <p style="font-weight: 500;" *ngIf="!isTableCreated">Table created</p><br>
 
