@@ -1,23 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoginRoutingModule } from './login-routing.module';
-import { LoginComponent } from './login.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FooterRoutingModule} from './footer-routing.module';
 import { DemoNgZorroAntdModule } from 'src/app/ng-zorro-antd.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FooterComponent } from './footer.component';
 
 
 
 @NgModule({
   declarations: [
-    LoginComponent
+    FooterComponent
   ],
   imports: [
     CommonModule,
-    LoginRoutingModule,
+    FooterRoutingModule,
     ReactiveFormsModule,
     DemoNgZorroAntdModule,
     FormsModule
-
-  ]
+  ],
+  exports:[
+    FooterComponent]
 })
-export class LoginModule { }
+export class FooterModule { }

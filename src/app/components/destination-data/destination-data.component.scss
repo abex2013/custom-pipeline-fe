@@ -9,3 +9,173 @@
 .register-are {
   margin-bottom: 8px;
 }
+
+.leftSide
+{
+  margin-left: 0px;
+  width: auto;
+  height: 90px;
+  margin-top: 50px;
+  // border-left: solid 1px black;
+
+}
+.rightSide
+{
+  margin-left: 750px;
+  margin-top: 50px;
+  width: 675px;
+  // border-left: solid 1px black;
+}
+.border{
+  border-right: solid 1px black;
+}
+
+
+.excellerent-logo
+{
+   margin-top:-175px;
+   margin-bottom:159px;
+   margin-left: 250px;
+   margin-right: 0px;
+}
+.login-welcome-text{
+  width:750px;
+  height:64px;
+  margin-top:-135px;
+  margin-bottom:39px;
+  margin-left: 10px;
+
+  font:SF Pro Display Semibold;
+  font-style:normal;
+  font-weight:600;
+  font-size:24px;
+  line-height:normal;
+  color:#1a202c;
+  background-color: rgb(195, 197, 195);
+  padding-top: 10px;
+}
+.length{
+
+  margin-left:auto;
+
+}
+.btn-group{
+
+  margin-left: 170px;
+  margin-top: 0px;
+  background:#2d3748;
+  width:347px;
+
+}
+
+
+.onhover :hover{
+  cursor:pointer
+}
+
+
+.container{
+
+  margin-top: -30px;
+  height: 50px;
+
+
+
+}
+// .container {
+//   display: flex;
+//   flex-direction: column;
+// }
+
+// /* The container's content you want to add an overflow to */
+// .container .scrollable-content {
+//   flex-grow: 1;
+//   overflow: auto;
+// }
+
+.excellernt-main-logo
+{
+  margin-top: 250px;
+  margin-left: 240px;
+}
+
+
+.img-fast-forward{
+  margin-top: 0px;
+}
+
+@media only screen and (min-width: 600px) {
+  /* For tablets: */
+  .col-s-1 {width: 8.33%;}
+  .col-s-2 {width: 16.66%;}
+  .col-s-3 {width: 25%;}
+  .col-s-4 {width: 33.33%;}
+  .col-s-5 {width: 41.66%;}
+  .col-s-6 {width: 50%;}
+  .col-s-7 {width: 58.33%;}
+  .col-s-8 {width: 66.66%;}
+  .col-s-9 {width: 75%;}
+  .col-s-10 {width: 83.33%;}
+  .col-s-11 {width: 91.66%;}
+  .col-s-12 {width: 100%;}
+}
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  .col-1 {width: 8.33%;}
+  .col-2 {width: 16.66%;}
+  .col-3 {width: 25%;}
+  .col-4 {width: 33.33%;}
+  .col-5 {width: 41.66%;}
+  .col-6 {width: 50%;}
+  .col-7 {width: 58.33%;}
+  .col-8 {width: 66.66%;}
+  .col-9 {width: 75%;}
+  .col-10 {width: 83.33%;}
+  .col-11 {width: 91.66%;}
+  .col-12 {width: 100%;}
+}
+.login-form {
+  max-width: 400px;
+}
+
+.login-form-margin {
+  margin-bottom: 16px;
+}
+
+.login-form-forgot {
+  float: right;
+}
+
+.login-form-button {
+  width: 100%;
+}
+
+
+
+.scroll {
+  margin:4px, 4px;
+  padding:4px;
+  background-color: rgb(232, 235, 232);
+  width: 750px;
+  height: 490px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  text-align:justify;
+  border-style:groove;
+  // font-family:serif;
+  font:SF Pro Display Semibold;
+  font-size:18px;
+
+}
+// ::ng-deep .ant-form-item-label {
+//   font-style: normal;
+//   font-weight: 500;
+//   font-size: 16px;
+//   line-height: 24px;
+// }
+// .button {
+//   font-style: normal;
+//   font-weight: 500;
+//   font-size: 16px;
+//   line-height: 24px;
+// }
