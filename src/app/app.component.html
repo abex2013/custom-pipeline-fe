@@ -1,19 +1,5 @@
-<!--
-  <nz-layout class="layout">
-    <nz-header >
-      <div class="logo"></div>
-      <div>
-      <ul nz-menu nzTheme="dark" nzMode="'horizontal'" class="header-menu">
-        <li nz-menu-item nzSelected>Home</li>
 
-        <li nz-menu-item>Login</li>
-
-      </ul>
-    </div>
-    </nz-header>
-    <nz-layout>
-  <router-outlet></router-outlet> -->
-  <nz-layout>
+  <!-- <nz-layout>
     <nz-header>
       <div class="logo"></div>
       <ul nz-menu nzTheme="dark" nzMode="horizontal">
@@ -21,14 +7,12 @@
         <li nz-menu-item routerLink="/login">Login</li>
       </ul>
     </nz-header>
-    <!-- <nz-content>
-      <nz-breadcrumb>
-        <nz-breadcrumb-item>Home</nz-breadcrumb-item>
-        <nz-breadcrumb-item>List</nz-breadcrumb-item>
-        <nz-breadcrumb-item>App</nz-breadcrumb-item>
-      </nz-breadcrumb>
-      <div class="inner-content">Content</div>
-    </nz-content>
-    <nz-footer>Ant Design ©2020 Implement By Angular</nz-footer> -->
-  </nz-layout>
+
+  </nz-layout> -->
+  <!-- <nz-footer
+class="nz-footer p-3"
+nzTheme="light">© 2022, Excellerent , Pipeline. All right reserved
+</nz-footer> -->
+<exec-epp-page-header *ngIf="isLogin"></exec-epp-page-header>
   <router-outlet></router-outlet>
+<exec-epp-page-footer></exec-epp-page-footer>

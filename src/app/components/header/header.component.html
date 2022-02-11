@@ -1,0 +1,25 @@
+<!-- <div>
+  <nz-steps [nzCurrent]="index" (nzIndexChange)="onIndexChange($event)">
+    <nz-step nzTitle="Finished" [nzDisabled]="disable" ></nz-step>
+    <nz-step nzTitle="In Progress" ></nz-step>
+    <nz-step nzTitle="Waiting" ></nz-step>
+  </nz-steps>
+</div> -->
+<div class="page-header" style="background: white">
+  <nz-page-header style="padding: 4px 24px;   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);">
+    <nz-page-header-title >
+      <img style="height: 50px" src="assets/excellerentlogos.png" />
+
+      &nbsp;&nbsp;Custom Pipline
+    </nz-page-header-title>
+    <nz-page-header-extra>
+
+      <button nz-button nzShape="circle" nzType="primary" nzDanger>{{user.userNameLetter}}</button>
+      {{user.username}}
+      <button nz-row style="size: 4%; border: none;" class="logBtn logout"  nz-button nzType="default" nzDanger (click)="logout()">
+        &nbsp;&nbsp;Logout
+    </button>
+
+    </nz-page-header-extra>
+  </nz-page-header>
+</div>

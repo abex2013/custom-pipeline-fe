@@ -1,0 +1,75 @@
+<div>
+  <nz-steps [nzCurrent]="index" (nzIndexChange)="onIndexChange($event)">
+    <nz-step nzTitle="Connect source" [nzDisabled]="disable"></nz-step>
+    <nz-step nzTitle="Connect destination"></nz-step>
+    <nz-step nzTitle="Completed"></nz-step>
+  </nz-steps>
+  <nz-divider></nz-divider>
+</div>
+
+<div  style="padding:30px;">
+  <div nz-row [nzGutter]="8">
+    <div nz-col [nzSpan]="13.01" class="card">
+      <nz-card nzTitle="Azure Connection Details">
+        <p style="font-weight: 500; float: left;">Storage Account:&nbsp;&nbsp;</p> <p style="font-weight: 400; font-style: italic; background-color: rgb(243, 240, 239);display: inline-flex;" > {{sourceDatas.storageAccount}}</p><br><br>
+        <p style="font-weight: 500; float: left;">Container Name:&nbsp;&nbsp;</p> <p style="font-weight: 400; font-style: italic; background-color: rgb(243, 240, 239);display: inline-flex;" > {{sourceDatas.containerName}}</p><br><br>
+        <p style="font-weight: 500; float: left;">AccessKey:&nbsp;&nbsp;</p> <p style="font-weight: 400; font-style: italic; background-color: rgb(243, 240, 239);display: inline-flex;" > {{sourceDatas.accessKey}}</p><br>
+      </nz-card>
+    </div>
+    <div nz-col [nzSpan]="8.01" class="card">
+      <nz-card nzTitle="Snowflake Connection Details">
+        <p style="font-weight: 500; float: left;"> Account Identifier:&nbsp;&nbsp;</p> <p style="font-weight: 400; font-style: italic; background-color: rgb(243, 240, 239);display: inline-flex;" > {{destinationDatas.accountidentifier}}</p><br><br>
+        <p style="font-weight: 500; float: left;"> User:&nbsp;&nbsp;</p> <p style="font-weight: 400; font-style: italic; background-color: rgb(243, 240, 239);display: inline-flex;" > {{destinationDatas.user}}</p><br><br>
+        <p style="font-weight: 500; float: left;"> Password:&nbsp;&nbsp;</p> <p style="font-weight: 400; font-style: italic; background-color: rgb(243, 240, 239);display: inline-flex; -webkit-text-security: disc;" > {{destinationDatas.password}}</p><br><br>
+        <p style="font-weight: 500; float: left;"> Database Name:&nbsp;&nbsp;</p> <p style="font-weight: 400; font-style: italic; background-color: rgb(243, 240, 239);display: inline-flex;" > {{destinationDatas.database_name}}</p><br><br>
+        <p style="font-weight: 500; float: left;"> Schema Name::&nbsp;&nbsp;</p> <p style="font-weight: 400; font-style: italic; background-color: rgb(243, 240, 239);display: inline-flex;" > {{destinationDatas.schema_name}}</p><br><br>
+        <p style="font-weight: 500; float: left;"> Warehouse Name:&nbsp;&nbsp;</p> <p style="font-weight: 400; font-style: italic; background-color: rgb(243, 240, 239);display: inline-flex;" > {{destinationDatas.warehouse_name}}</p><br>
+      </nz-card>
+    </div>
+
+    <div nz-col [nzSpan]="2.25" class="card" >
+      <nz-card nzTitle="Summary"  [style.background]="isTableCreated ? '#f1f1f1':'#ffffff'">
+        <nz-spin *ngIf="isTableCreated" nzTip="Creating...">
+        </nz-spin>
+        <p style="font-weight: 500;" *ngIf="!isTableCreated">Table created</p><br>
+
+        <table *ngIf="!isTableCreated">
+          <thead>
+            <tr>
+              <th style="font-weight: 500;">Table Name:</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{tableInfo.tableName}}</td>
+            </tr>
+          </tbody>
+        </table><br>
+        <!-- <table>
+          <thead>
+            <tr>
+              <th style="font-weight: 500;">No. Columns</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{destinationDatas.user}}</td>
+            </tr>
+          </tbody>
+        </table><br> -->
+        <table *ngIf="!isTableCreated">
+          <thead>
+            <tr>
+              <th style="font-weight: 500;">InsertedRows:</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{tableInfo.numRows}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </nz-card>
+    </div>
+  </div>
+</div>

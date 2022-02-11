@@ -1,19 +1,220 @@
+<div>
+  <nz-steps [nzCurrent]="index" (nzIndexChange)="onIndexChange($event)">
+    <nz-step nzTitle="Connect source" [nzDisabled]="disable"></nz-step>
+    <nz-step nzTitle="Connect destination"></nz-step>
+    <nz-step nzTitle="Completed"></nz-step>
+  </nz-steps>
+  <nz-divider></nz-divider>
+</div>
+<!-- <iframe src="https://mansourcodes.com/"></iframe> -->
+<div class="container">
+  <div class="leftSide">
+    <div class="img-fast-forward">
+      <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+        <h1>Source Data: Azure Credentials</h1>
+        <nz-form-item>
+          <nz-form-label
+            [nzSm]="6"
+            [nzXs]="24"
+            nzFor="storageAccount"
+            nzRequired
+          >
+            <span>Storage Account</span>
+          </nz-form-label>
+          <nz-form-control
+            [nzSm]="14"
+            [nzXs]="24"
+            nzErrorTip="Please input your storage account!"
+          >
+            <input
+              nz-input
+              id="storageAccount"
+              formControlName="storageAccount"
+              [(ngModel)]="connectionData.storageAccount"
+            />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label
+            [nzSm]="6"
+            [nzXs]="24"
+            nzFor="containerName"
+            nzRequired
+          >
+            <span>Container Name</span>
+          </nz-form-label>
+          <nz-form-control
+            [nzSm]="14"
+            [nzXs]="24"
+            nzErrorTip="Please input your container name!"
+          >
+            <input
+              nz-input
+              id="containerName"
+              formControlName="containerName"
+              [(ngModel)]="connectionData.containerName"
+            />
+          </nz-form-control>
+        </nz-form-item>
 
-<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+        <nz-form-item>
+          <nz-form-label
+            [nzSm]="6"
+            [nzXs]="24"
+            nzFor="accessKey"
+            nzRequired
+            nzTooltipTitle="It authenticate your applications’ requests to your storage account."
+            [nzTooltipIcon]="captchaTooltipIcon"
+          >
+            <span>Access Key</span>
+          </nz-form-label>
+          <nz-form-control
+            [nzSm]="14"
+            [nzXs]="24"
+            nzErrorTip="Please input your access key!"
+          >
+            <input
+              nz-input
+              id="accessKey"
+              formControlName="accessKey"
+              [(ngModel)]="connectionData.accessKey"
+            />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item nz-row class="register-area">
+          <nz-form-control [nzSpan]="14" [nzOffset]="6">
+            <button nz-button nzType="primary" (click)="registerConnection()">
+              Connect
+            </button>
+            <nz-spin *ngIf="isConnected && isRegisterConnection" nzTip="Connecting...">
+            </nz-spin>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+    </div>
+  </div>
+
+  <div class="rightSide">
+    <div class="login-welcome-text">
+      <p>Setup Guide</p>
+      <nz-divider></nz-divider>
+      <div class="scroll">
+        <p>
+          Follow the following setup guide to connect Azure Blob Storage to our
+          App.
+        </p>
+
+        <h2>Prerequisites</h2>
+
+        <p>To connect Azure Blob Storage to our app, you need:</p>
+        <ul>
+          <li>
+            An Azure Blob Storage container holding files with supported file
+            types and encodings
+          </li>
+          <li>
+            The ability to grant our app the ability to read files from this
+            container
+          </li>
+        </ul>
+
+        <h2>Setup instructions</h2>
+
+        <h3>Step 1 :- Get your access key:</h3>
+        <ol>
+          <li>
+            Open
+            <a
+              href="https://portal.azure.com/"
+              target="_blank"
+              >Azure Portal</a
+            >.
+          </li>
+          <li>
+            Select your storage account and click Access Keys under the Security
+            + networking tab.
+          </li>
+          <li>Press the show keys and copy the first key</li>
+          <img src="assets/1.png" />
+          <li>
+            Make a note of the access key value. You need to enter this value in
+            the Connection String field in the connector setup form.
+          </li>
+        </ol>
+        <h3>Step 2 :- Finish Source Configuration:</h3>
+        <ol>
+          <li>Enter your storage account name</li>
+          <li>Enter the access key you found in Azure</li>
+          <li>Enter your container name</li>
+        </ol>
+        <h3>Step 3 :- Create Event Grid:</h3>
+        <p>
+          Note: Creating event grid and following the next step is required to
+          keep syncing data in real-time
+        </p>
+        <p>
+          IMPORTANT: If you haven't previously used Event Grid in your Azure
+          subscription, you may need to register the Event Grid resource
+          provider.
+        </p>
+
+        <p>
+          Please follow the following link to register an Event Grid in your
+          subscription: <a href="https://docs.microsoft.com/en-us/azure/event-grid/blob-event-quickstart-portal#enable-event-grid-resource-provider" target="_blank">Register Event Grid</a> or follow the following steps:
+        </p>
+
+        <p>In the <a
+          href="https://portal.azure.com/"
+          target="_blank"
+          >Azure Portal</a
+        >.:</p>
+        <ol>
+          <li>Select Subscriptions on the left menu.</li>
+          <li>Select the subscription you're using for Event Grid.</li>
+          <li>On the left menu, under Settings, select Resource providers.</li>
+          <li>Find Microsoft.EventGrid.</li>
+          <li>If not registered, select Register.</li>
+        </ol>
+
+        <p>If you have registered:</p>
+
+        <ol>
+          <li>
+            Open
+            <a
+              href="https://portal.azure.com/"
+              target="_blank"
+              >Azure Portal</a
+            >
+          </li>
+          <li>Select your storage account and events under overview tab</li>
+          <img src="assets/2.png" />
+          <li>Click on + Event Subscription</li>
+          <li>Give a name as per the requirement</li>
+          <li>
+            Create a topic if it is not already created in the Topic Details
+            section
+          </li>
+          <li>
+            Select Web hook as an end-point in the ENDPOINT DETAILS section
+          </li>
+          <ul>
+            <li>
+              Add the endpoint:
+              <a>https://kafka-producer.herokuapp.com/event</a> as the endpoint.
+            </li>
+          </ul>
+          <li>Click Create and wait for the creation</li>
+        </ol>
+        <img src="assets/33.png" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
   <h1> Source Data: Azure Credentials</h1>
-  <nz-form-item>
-    <nz-form-label
-      [nzSm]="6"
-      [nzXs]="24"
-      nzFor="userId"
-      nzRequired
-    >
-      <span>User ID</span>
-    </nz-form-label>
-    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your name!">
-      <input nz-input id="userId" formControlName="userId" />
-    </nz-form-control>
-  </nz-form-item>
   <nz-form-item>
     <nz-form-label
       [nzSm]="6"
@@ -24,7 +225,7 @@
       <span>Storage Account</span>
     </nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your name!">
-      <input nz-input id="storageAccount" formControlName="storageAccount" />
+      <input nz-input id="storageAccount" formControlName="storageAccount" [(ngModel)]="connectionData.storageAccount"/>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
@@ -37,7 +238,7 @@
       <span>Container Name</span>
     </nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your name!">
-      <input nz-input id="containerName" formControlName="containerName" />
+      <input nz-input id="containerName" formControlName="containerName" [(ngModel)]="connectionData.containerName"/>
     </nz-form-control>
   </nz-form-item>
 
@@ -51,14 +252,13 @@
       <span>Access Key</span>
     </nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your name!">
-      <input nz-input id="accessKey" formControlName="accessKey" />
+      <input nz-input id="accessKey" formControlName="accessKey" [(ngModel)]="connectionData.accessKey"/>
     </nz-form-control>
   </nz-form-item>
 
   <nz-form-item nz-row class="register-area">
     <nz-form-control [nzSpan]="14" [nzOffset]="6">
-      <button nz-button nzType="primary">Register</button>
+      <button nz-button nzType="primary" (click)="registerConnection()">Register</button>
     </nz-form-control>
   </nz-form-item>
-</form>
-
+</form> -->

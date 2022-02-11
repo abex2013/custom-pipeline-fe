@@ -24,20 +24,97 @@ export class AuthRoutingGaurd implements CanActivate {
     | Promise<boolean | UrlTree> {
     const userDate=this.authService.userInfo.getValue();
     // alert(JSON.stringify(userDate));
+    // if(userDate && userDate.userId){
+    //   if(state.url.indexOf("login") > -1)
+    //   {
+    //     this.route.navigate(['/dashboard']);
+    //     return false;
+    //   }
+    // }
+    // else{
+    //   if(state.url.indexOf("dashboard") > -1)
+    //   {
+    //     this.route.navigate(['/login']);
+    //     return false;
+    //   }
+    // }
     if(userDate && userDate.userId){
       if(state.url.indexOf("login") > -1)
       {
-        this.route.navigate(['/dashboard']);
+        this.route.navigate(['/source-data']);
         return false;
       }
+      // else if(state.url.indexOf("login") > -1)
+      // {
+      //   this.route.navigate(['/destination-data']);
+      //   return false;
+      // }
+      // else if(state.url.indexOf("login") > -1)
+      // {
+      //   this.route.navigate(['/final-form']);
+      //   return false;
+      // }
+      // else{
+
+      //   this.route.navigate(['/']);
+      //   return false;
+      // }
     }
     else{
-      if(state.url.indexOf("dashboard") > -1)
+      if(state.url.indexOf("source-data") > -1)
       {
-        this.route.navigate(['/login']);
+
+        this.route.navigate(['/']);
+        return false;
+      }
+      else if(state.url.indexOf("destination-data") > -1)
+      {
+
+        this.route.navigate(['/']);
+        
+        return false;
+      }
+      else if(state.url.indexOf("final-form") > -1)
+      {
+
+        this.route.navigate(['/']);
+        return false;
+      }
+      else{
+
+        this.route.navigate(['/']);
         return false;
       }
     }
+
+// if(userDate && userDate.userId){
+        //   if(state.url.indexOf("source-data") > -1)
+        //   {
+        //     this.route.navigate(['/destination-data']);
+        //     if(userDate && userDate.userId){
+        //       if(state.url.indexOf("destination-data") > -1)
+        //       {
+        //         this.route.navigate(['/final-form']);
+        //         return false;
+        //       }
+        //     }
+        //     else{
+        //       if(state.url.indexOf("final-form") > -1)
+        //       {
+        //         this.route.navigate(['/']);
+        //         return false;
+        //       }
+        //     }
+        //     return false;
+        //   }
+        // }
+        // else{
+        //   if(state.url.indexOf("destination-data") > -1)
+        //   {
+        //     this.route.navigate(['/']);
+        //     return false;
+        //   }
+        // }
     return true;
   }
 }

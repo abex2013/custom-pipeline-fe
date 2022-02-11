@@ -9,6 +9,7 @@ import {
 import { Router } from '@angular/router';
 
 import { NzFormTooltipIcon } from 'ng-zorro-antd/form';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { SignupService } from 'src/app/core/services/signup.service';
 
 @Component({
@@ -68,7 +69,8 @@ export class RegistrationComponent implements OnInit {
     private fb: FormBuilder,
     private signupService: SignupService,
     private route: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    private notification: NzNotificationService,
   ) {}
 
   ngOnInit(): void {
@@ -91,17 +93,31 @@ export class RegistrationComponent implements OnInit {
     // }
     this.signupService.register(this.registerData).subscribe(
       (value: boolean) => {
-        if (value) {
-          this.route.navigate(['/login']);
+        if (value && this.validateForm.valid) {
+          this.notification.success("User registered successfully","",
+        // { nzPlacement: 'bottomRight' }
+
+        );
+          this.route.navigate(['/']);
         } else {
-          alert('failed');
+          this.notification.error("User registration is failed","",
+        // { nzPlacement: 'bottomRight' }
+        );
+          // alert('failed');
         }
       },
       (error) => {
-        alert('faild');
+        this.notification.error("User registration is failed","",
+        // { nzPlacement: 'bottomRight' }
+        );
+        // alert('faild');
       }
     );
-    alert('user logged in successfully');
-    this.route.navigate(['/login']);
+    // alert('user logged in successfully');
+    // this.notification.success("User logged in successfully","",
+    //     { nzPlacement: 'bottomRight' }
+
+    //     );
+    // this.route.navigate(['/']);
   }
 }

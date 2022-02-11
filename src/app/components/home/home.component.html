@@ -1,3 +1,58 @@
-<div>
-  <h1>This is the home page of the application</h1>
+
+<div class="container" >
+
+ <div class="leftSide">
+    <div  class="img-fast-forward">
+        <!-- <img src="assets/images/imgFastForward.png" height="739px" width="800px"> -->
+        <img src="assets/imgFastForwardCopy.png" >
+    </div>
+</div>
+
+<div class="rightSide">
+        <div  class="excellerent-logo">
+          <br><br><br><br><br><br><br><br>
+            <img  src="../assets/Excellerent logo.jpg" width="150" alt="Excellerent Logo">
+        </div>
+        <div class="login-welcome-text">
+            <p > Welcome,<br > Login to your account </p>
+            <div>
+              <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+                <nz-form-item>
+                  <nz-form-control nzErrorTip="Please input your username!">
+                    <nz-input-group nzPrefixIcon="user">
+                      <input type="text" nz-input formControlName="userName" placeholder="Email" [(ngModel)]="loginData.email" />
+                    </nz-input-group>
+                  </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                  <nz-form-control nzErrorTip="Please input your Password!">
+                    <nz-input-group nzPrefixIcon="lock">
+                      <input type="password" nz-input formControlName="password" placeholder="Password" [(ngModel)]="loginData.password" />
+                    </nz-input-group>
+                  </nz-form-control>
+                </nz-form-item>
+                <div nz-row class="login-form-margin">
+                  <!-- <div nz-col [nzSpan]="12">
+                    <label nz-checkbox formControlName="remember">
+                      <span>Remember me</span>
+                    </label>
+                  </div>
+                  <div nz-col [nzSpan]="12">
+                    <a class="login-form-forgot">Forgot password</a>
+                  </div> -->
+                </div>
+                <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'" (click)="userLogin()">Log in</button>
+
+                Don't have an account yet?
+                <a routerLink="/registration">register now!</a>
+              <router-outlet></router-outlet>
+              </form>
+              </div>
+        </div>
+</div>
+<!-- <nz-footer
+class="nz-footer p-3"
+nzTheme="light">© 2022, Excellerent , Pipeline. All right reserved
+</nz-footer> -->
+
 </div>
